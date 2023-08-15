@@ -57,5 +57,22 @@ docker image
 What does OCI stand for?
 open container initiative 
 
+
+Each container gets a CPU share of …. assigned by default.
+1024
+
+What will happen if the --memory-swap is set to -1?
+the container is allowed to use unlimited swap 
+
+What is a linux feature that prevents a process within the container to access raw sockets?
+kernel capabilities.
+
+by default a container runs with unlimited CPU and memory resource (true)
+
+By default, all containers get the same share of CPU cycles. How to modify the shares?
+docker container run --cpu-shares=512nginx
+
+
+
  
  
