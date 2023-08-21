@@ -239,6 +239,54 @@ Which option is used to mount a volume ?
 -mount
 
 
+-------------------docker image managment-----------------
+where the images stored and how do we get them ?
+iamges stored in a central image repository known as image registry .  >docker hub 
+you can  create public and private images on docker hub .
+you can create your own images and push it to docker hub  and even make the private .
+
+docker trusted registry service:-
+official images 
+verified images 
+users images 
+
+when you pull image that doesn't mean to create a container from it .
+
+why i need to create my own images ??
+becuse mabye you cant find a service that you want or you and your tam decided the app you developing will be dockerized  fro shipping and deployment . 
+
+A build’s context is the set of files located in the specified PATH or URL, Which kind of resources can the URL parameter refer to ?
+git repo
+
+What is a recommended approach for installing packages and libraries while building an image?
+update and install commands in the same instraction.
+
+What is the file used to exclude temporary files such as log files or builds from the context during a build?
+.dockerignor
+
+Whenever a build is initiated by running the Docker build command, the files under the build context are transferred to the Docker daemon, at a temporary directory under the docker’s filesystem. Which directory are these files stored in?
+var/lib/docker/tmp
+
+
+If the build fails at a particular stage, it repurposes the previous layers from the cache and does not really rebuild them.
+true
+
+If you do not specify a tag name, you can’t build the image.
+false
+
+Which option can be used to disable the cache while building a docker image?
+--no-cache
+
+Build an image using a context build under path /tmp/docker and name it webapp.
+docker build /tmp/docker -t webapp
+
+ forces the build to install a particular version of package regardless of what’s in the cache. This technique can also reduce failures due to unanticipated changes in required packages.
+version pinning 
+
+
+What is a best practice while installing multiple packages as part of the install instruction?
+
+
 
 
 
