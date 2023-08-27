@@ -32,59 +32,59 @@ is written in go the same programming language that docker is written in and red
 
 # some questions :
 Q: Which is the default data directory for Docker?
-answer: /var/lib/docker
+>/var/lib/docker
 
 Q:What component of the docker engine manages the images, containers, volumes and networks on a host?
-
-answer: docker deamon
+>docker deamon
 
 Q:By default, data stored inside the container is always persistent
-answer: false
+>false
 
 Q:What is the command to view the version of docker engine installed?
-answer: docker version
+>docker version
 
 Q:What are the components of the Docker Engine?
-answer: Docker CLI , Docker Deamon , REST API
+>Docker CLI , Docker Deamon , REST API
 
 Q:What component of the docker architecture is responsible for managing containers on Linux on version 1.15 of Docker Engine? 
-answer: libcontainer
+>libcontainer
 
 Q:What are the 2 specifications from OCI?
-answer: here are currently two specifications in development and in use: Runtime Specification (runtime-spec) and the Image Specification (image-spec)
+>here are currently two specifications in development and in use: Runtime Specification (runtime-spec) and the Image Specification (image-spec)
 
 Q:By default, Docker is configured to look for images on Google Cloud Registry
-answer: false
+>false
 
 Q:We can run containers without installing Docker?
-answer: true
+>true
 
 Q:What are the primary objects that Docker engine manages?
-answer: images , container ,Volumes , networks .
+>images , container ,Volumes , networks .
 
 Q:Which component is responsible for keeping the containers alive when the Docker Daemon goes down?
-answer: containered-Shim
+>containered-Shim
 
 Q:Which component is a read-only template used for creating a Docker container?
-answer: docker image
+>docker image
 
 Q:What does OCI stand for?
-answer: open container initiative 
+>open container initiative 
 
 
 Q:Each container gets a CPU share of …. assigned by default.
-answer: 1024
+>1024
 
 Q:What will happen if the --memory-swap is set to -1?
-answer: the container is allowed to use unlimited swap 
+>the container is allowed to use unlimited swap 
 
 Q:What is a linux feature that prevents a process within the container to access raw sockets?
-answer: kernel capabilities.
+>kernel capabilities.
 
-by default a container runs with unlimited CPU and memory resource (true)
+Q:by default a container runs with unlimited CPU and memory resource
+>True
 
 Q:By default, all containers get the same share of CPU cycles. How to modify the shares?
-answer: docker container run --cpu-shares=512nginx
+>docker container run --cpu-shares=512nginx
 
 
 # when you install Docker it creates 3 networks automaticly (Bridge , None , Host ):
@@ -110,54 +110,60 @@ in the IPAM section thats for IP address managment and there you can see the typ
 
 # to connect a container to a custom network :
 >docker network connect custom-net my container .
-you may connect a single container to multiple networks 
+*you may connect a single container to multiple networks 
 
-to disconnect run>docker network disconnect custom-net my container .
+# to disconnect run:
+>docker network disconnect custom-net my container .
 
-to remove a network run > docker network rm custom-net . 
+# to remove a network run:
+> docker network rm custom-net . 
 
-to remove all unused network run > docker network prune .
+# to remove all unused network run :
+> docker network prune .
 
-How to get the subnet, gateway of the network c0a0b59a3807?
-docker network inspect c0a0b59a3807
+# How to get the subnet, gateway of the network c0a0b59a3807?
+>docker network inspect c0a0b59a3807
 
-What is the default network driver used on a container if you haven’t specified one?
-bridge 
+# What is the default network driver used on a container if you haven’t specified one?
+>bridge 
 
-What is the command to connect a running container with name myapp to the existing bridge network my-net?
-docker network connect  my-net myapp
+# What is the command to connect a running container with name myapp to the existing bridge network my-net?
+>docker network connect  my-net myapp
 
-Which of the following commands would create a user-defined bridge network called my-net?
-docker network create --driver bridge my-net
+# Which of the following commands would create a user-defined bridge network called my-net?
+>docker network create --driver bridge my-net
 
-Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each other.
-true
+# Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each other.
+>true
 
-Which command is used to see the network settings and IP address assigned to a container with id c164825bb3d3 that uses the myapp image?
-docker inspect c164825bb3d3
+# Which command is used to see the network settings and IP address assigned to a container with id c164825bb3d3 that uses the myapp image?
+>docker inspect c164825bb3d3
 
-If you use the …… network mode for a container, that container’s network stack is not isolated from the Docker host (the container shares the host’s networking namespace), and the container does not get its own IP-address allocated.
-Host
+# If you use the …… network mode for a container, that container’s network stack is not isolated from the Docker host (the container shares the host’s networking namespace), and the container does not get its own IP-address allocated.
+> Host
 
-What is the command to remove all unused networks?
-docker network prune 
+# What is the command to remove all unused networks?
+>docker network prune 
 
-What is the command to remove the my-net network?
-docker network rm my-net 
+# What is the command to remove the my-net network?
+>docker network rm my-net 
 
-Which command is used to list the default available networks?
-docker network ls
+# Which command is used to list the default available networks?
+>docker network ls
 
 
-network namespaces are used by container like docker to implement network isolation 
-namespace for example if the host is your house so rooms is the namespaces within the house that you assigned to each for youe children the room helps in providing privacy to each Child , each child can only see whats  within his/her room they cant see whats happen outside the room as parents you have visibility  into all the rooms in the house as well as other areas in the house if you wish  you can  eatsblish connectivity  between two rooms in the house 
+# Network namespaces:- 
+are used by container like docker to implement network isolation .
+
+# Namespace for example : 
+if the host is your house so rooms is the namespaces within the house that you assigned to each for youe children the room helps in providing privacy to each Child , each child can only see whats  within his/her room they cant see whats happen outside the room as parents you have visibility  into all the rooms in the house as well as other areas in the house if you wish  you can  eatsblish connectivity  between two rooms in the house 
 when you amke a container  you want to make sure that it is isolated that is does not see any other proccess on the host or any other containers so we create a special room for it on our host using namespace 
 as far as the container is concerned it only sees the proccess run by it and things thas it is on its own host 
 the undelying host however has visibility into all of the proccesses including those rinnig insde conatiners this can be seen when you list the proccesses from within the container you see a single process with a process id of one when you list  the same processes as a root user from  the underlying host you see all the other processes along with the process running inside the container this time with a diffrent process ID 
 
-when the continer is created we create a network namespaces for it that way it has no visibility to any network related information  on the host and the container can have its own virtual interfaces routing and ARP table 
+*when the continer is created we create a network namespaces for it that way it has no visibility to any network related information  on the host and the container can have its own virtual interfaces routing and ARP table 
 
-container are separated from the underlying host using namespaces  
+*container are separated from the underlying host using namespaces  
 
 
 # to create a new network namespace on linux host run:
