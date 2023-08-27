@@ -1,97 +1,115 @@
- docke ris responsible for creating and managing objects such as imeges , containers ,volumes, and network on a host.
- the rest API provieds an interface to manage objects in Docker
- the docker CLI is the command line interface that we use to run command to mange objects in Docker
- libcontainer is written in go the same programming language that docker is written in and reduce docker dependency on the kernal LXC technology with libcontainer docker could now directly interact with the linux kernal features such as namespaces and cgroups (the default execution environment of docker) 
- docker image : is a read only template used for creating a docker container (could be base images of OS or apps like webservers or databses )	
- docker container : running instance of an image (read write template ) ceate start stop move delete a container using Docker CLI or the api .
- docker network : help in implementing various solutions for containers to be able to communicate with each other 
- when the container dies all the data died 
- docker volumes : help in persisting data across container restarts 
+# docker:
+is responsible for creating and managing objects such as imeges , containers ,volumes, and network on a host.
+
+*the rest API provieds an interface to manage objects in Docker.
+ 
+ # the docker CLI:
+ is the command line interface that we use to run command to mange objects in Docker.
+ 
+# libcontainer :
+is written in go the same programming language that docker is written in and reduce docker dependency on the kernal LXC technology with libcontainer docker could now directly interact with the linux kernal features such as namespaces and cgroups (the default execution environment of docker)
+
+ # docker image : 
+ is a read only template used for creating a docker container (could be base images of OS or apps like webservers or databses )	
+ # docker container : 
+ running instance of an image (read write template ) ceate start stop move delete a container using Docker CLI or the api .
+ # docker network :
+ help in implementing various solutions for containers to be able to communicate with each other 
+ when the container dies all the data died .
+ # docker volumes :
+ help in persisting data across container restarts 
  image registry :stores docker images and is used publish and share images publicly or withna private organization , docker hub is a public registry that anyone can use , docker is config to look for images on docker hub by defalut 
  
- unix socket is an ipc or inter-process communication mechanism that used between different processes on the same host *Docker deamon is only accessible within the same host and the docker CLi 
- the docker deamon is not accessible outside of the docker host because its only listening on th unix socket  so we cane make it to listen on a TCP interface on the docker host by adding the host option while running the docker deamin command line  in this case our host happens to have an interface 
+ # unix socket :
+ is an ipc or inter-process communication mechanism that used between different processes on the same host *Docker deamon is only accessible within the same host and the docker CLi .
+ # the docker deamon :
+ is not accessible outside of the docker host because its only listening on th unix socket  so we cane make it to listen on a TCP interface on the docker host by adding the host option while running the docker deamin command line  in this case our host happens to have an interface .
  
- the command line utility used to manage docker objests is called docker itself . 
+ *the command line utility used to manage docker objests is called docker itself . 
  
- 
- docker container run -itd --name=blabla ubuntu
+ # how to run docker contianer command :
+ docker container run -d --name=blabla ubuntu
+
+# some questions :
+Q: Which is the default data directory for Docker?
+answer: /var/lib/docker
+
+Q:What component of the docker engine manages the images, containers, volumes and networks on a host?
+
+answer: docker deamon
+
+Q:By default, data stored inside the container is always persistent
+answer: false
+
+Q:What is the command to view the version of docker engine installed?
+answer: docker version
+
+Q:What are the components of the Docker Engine?
+answer: Docker CLI , Docker Deamon , REST API
+
+Q:What component of the docker architecture is responsible for managing containers on Linux on version 1.15 of Docker Engine? 
+answer: libcontainer
+
+Q:What are the 2 specifications from OCI?
+answer: here are currently two specifications in development and in use: Runtime Specification (runtime-spec) and the Image Specification (image-spec)
+
+Q:By default, Docker is configured to look for images on Google Cloud Registry
+answer: false
+
+Q:We can run containers without installing Docker?
+answer: true
+
+Q:What are the primary objects that Docker engine manages?
+answer: images , container ,Volumes , networks .
+
+Q:Which component is responsible for keeping the containers alive when the Docker Daemon goes down?
+answer: containered-Shim
+
+Q:Which component is a read-only template used for creating a Docker container?
+answer: docker image
+
+Q:What does OCI stand for?
+answer: open container initiative 
 
 
-Which is the default data directory for Docker?
-/var/lib/docker
+Q:Each container gets a CPU share of …. assigned by default.
+answer: 1024
 
-What component of the docker engine manages the images, containers, volumes and networks on a host?
-docker deamon
+Q:What will happen if the --memory-swap is set to -1?
+answer: the container is allowed to use unlimited swap 
 
-By default, data stored inside the container is always persistent
-false
-
-What is the command to view the version of docker engine installed?
-docker version
-
-What are the components of the Docker Engine?
-Docker CLI , Docker Deamon , REST API
-
-What component of the docker architecture is responsible for managing containers on Linux on version 1.15 of Docker Engine? 
-libcontainer
-
-What are the 2 specifications from OCI?
-here are currently two specifications in development and in use: Runtime Specification (runtime-spec) and the Image Specification (image-spec)
-
-By default, Docker is configured to look for images on Google Cloud Registry
-false
-
-We can run containers without installing Docker?
-true
-
-What are the primary objects that Docker engine manages?
-images , container ,Volumes , networks .
-
-Which component is responsible for keeping the containers alive when the Docker Daemon goes down?
-containered-Shim
-
-Which component is a read-only template used for creating a Docker container?
-docker image
-
-What does OCI stand for?
-open container initiative 
-
-
-Each container gets a CPU share of …. assigned by default.
-1024
-
-What will happen if the --memory-swap is set to -1?
-the container is allowed to use unlimited swap 
-
-What is a linux feature that prevents a process within the container to access raw sockets?
-kernel capabilities.
+Q:What is a linux feature that prevents a process within the container to access raw sockets?
+answer: kernel capabilities.
 
 by default a container runs with unlimited CPU and memory resource (true)
 
-By default, all containers get the same share of CPU cycles. How to modify the shares?
-docker container run --cpu-shares=512nginx
+Q:By default, all containers get the same share of CPU cycles. How to modify the shares?
+answer: docker container run --cpu-shares=512nginx
 
 
-when you install Docker it creates3 networks automaticly (Bridge , None , Host )
-Bridge:  is the default network a container gets attached to and its a private internal network created by Docker  on the Host  All containers attached to this network by default and they get an internal IP address usually in the range 172.17 series . the container can access each other using this intrenal IP if required to access any of these containers from the outside world map the ports of these containers to ports on the docker Host 
+# when you install Docker it creates 3 networks automaticly (Bridge , None , Host ):
+*Bridge:  is the default network a container gets attached to and its a private internal network created by Docker  on the Host  All containers attached to this network by default and they get an internal IP address usually in the range 172.17 series . the container can access each other using this intrenal IP if required to access any of these containers from the outside world map the ports of these containers to ports on the docker Host 
 another way to access to these containers is to associate the container to the host network this takes out any network isolation between the docker host and the docker container 
 
-None : the container are not attachedto any network and dosent have any access to the external network or other containers they run in an isolated network 
+*None : the container are not attachedto any network and dosent have any access to the external network or other containers they run in an isolated network 
 
-containers can reach each other using their names 
+*containers can reach each other using their names 
 
-when you want to connect  for example to SQL use the Docker container name 
+# when you want to connect  for example to SQL use the Docker container name 
 
 how does Docker implement networking? and what the thecnlogy behind it? how are the container isolated within the host ? Docker uses network namespaces that creates separate namespace for each container it then uses virtual ethernet pairs to connect containers together. 
 
-to list the default availbale network we run > docker network ls 
+# to list the default availbale network we run : 
+> docker network ls 
 
-how do we see the network settings and IP address assigned to a network ?
-run >docker network inspect XXXXXXXXXX  <this is the Id or the name of the container 
-in the IPAM section thats for IP address managment and there you can see the type of network  and the subnet assigend to that network .
+# how do we see the network settings and IP address assigned to a network ?
+>docker network inspect XXXXXXXXXX .
 
-to connect a container to a custom network run >docker network connect custom-net my container .
+(the XXXXXXXXX is the Id or the name of the container 
+in the IPAM section thats for IP address managment and there you can see the type of network  and the subnet assigend to that network .)
+
+# to connect a container to a custom network :
+>docker network connect custom-net my container .
 you may connect a single container to multiple networks 
 
 to disconnect run>docker network disconnect custom-net my container .
