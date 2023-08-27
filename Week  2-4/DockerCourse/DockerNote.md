@@ -160,149 +160,183 @@ when the continer is created we create a network namespaces for it that way it h
 container are separated from the underlying host using namespaces  
 
 
-to create a new network namespace on linux host run > ip netns add red
-                                                      ip netns add blue 
-to list network namespaces run > ip netns 
+# to create a new network namespace on linux host run:
+> ip netns add red
+> ip netns add blue 
+# to list network namespaces run :
+> ip netns 
 
-to list interface on my host run>   ip link 
+# to list interface on my host run :
+> ip link 
 
-run > ip netns exec red ip link 
- to orignal ip link run >ip -n red link 
- to connect two namespaces its like useing vitual cable (pipe) 
-to connect two namespaces run > ip link add veth-red type veth peer name veth-blue 
-and then attach the interface to the namespace using this comman > ip link set veth-red netns red 
-ip link set veth-blue netns blue 
+>ip netns exec red ip link 
+# to orignal ip link run : 
+>ip -n red link 
+*to connect two namespaces its like useing vitual cable (pipe) 
+# to connect two namespaces run 
+> ip link add veth-red type veth peer name veth-blue 
+# and then attach the interface to the namespace using this command:
+> ip link set veth-red netns red 
 
-and to assign ip to them run > ip -n red addr add 192.168.15.1 dev veth-red 
-ip -n blue addr add 192.168.15.2 dev veth-blue .
-`to they can reach other run > ip -n red link set veth-red up
-ip -n blue link set veth-blue up
+>ip link set veth-blue netns blue 
 
-if you have more than two use these comman > photo in screenshots commited name is "more than two vitual cable "
+# and to assign ip to them run :
+> ip -n red addr add 192.168.15.1 dev veth-red 
 
-Which command is used to see the IP address and other network settings assigned to a container with id 33373b1ccc3f that uses the wordpress image?
-Docker inspect 33373b1ccc3f
+>ip -n blue addr add 192.168.15.2 dev veth-blue .
+# `to they can reach other run :
+> ip -n red link set veth-red up
 
-Which command is used to disconnect the my-net network from the redis container?
-docker network disconnect my-net redis
+>ip -n blue link set veth-blue up
 
-Which of the following commands would create a user-defined bridge network called dev-net?
-docker network create --driver bridge dev-net
+*if you have more than two use these comman > photo in screenshots commited name is "more than two vitual cable "
 
-What is the default network driver used on a container if you haven’t specified one?
-bridge
+Q:Which command is used to see the IP address and other network settings assigned to a container with id 33373b1ccc3f that uses the wordpress image?
 
-What is the command to list all available networks?
-docker network ls 
+>Docker inspect 33373b1ccc3f
 
-What is the command to connect a running container with name myapp to the existing bridge network dev-net?
-docker network connect dev-net myapp
+Q:Which command is used to disconnect the my-net network from the redis container?
 
-Which command is used to see the details of the subnet and gateway of network id ce982a9edf65?
-docker network inspect ce982a9edf65
+>docker network disconnect my-net redis
 
-What is the command to remove all unused networks from the Docker host?
-docker network prune 
+Q:Which of the following commands would create a user-defined bridge network called dev-net?
 
-If you use the … network mode for a container, that container’s network stack is not isolated from the Docker host (the container shares the host’s networking namespace), and the container does not get its own IP-address allocated.
-Host
+>docker network create --driver bridge dev-net
 
+Q:What is the default network driver used on a container if you haven’t specified one?
 
-What is the command to delete the network named connector?
-docker network rn connector 
+>bridge
 
-Which command is used to remove the my-vol volume?
-docker volume remove my-vol
+Q:What is the command to list all available networks?
 
-You can remove a vol1 which is in use by a container using the command docker volume rm --force vol1.
-false
+>docker network ls 
 
-By default, all files inside an image are in a writable layer.
-false
+Q:What is the command to connect a running container with name myapp to the existing bridge network dev-net?
 
-What is the command to get details of the volume my-vol such as the driver, mountpoint, volumename, …etc?
-docker volume inspect my-vol
+>docker network connect dev-net myapp
 
+Q:Which command is used to see the details of the subnet and gateway of network id ce982a9edf65?
 
-Which option is used to mount a volume ?
--mount
+>docker network inspect ce982a9edf65
 
-By default, all files created inside a container are stored on a writable container layer.
-true 
+Q:What is the command to remove all unused networks from the Docker host?
+
+>docker network prune 
+
+Q:If you use the … network mode for a container, that container’s network stack is not isolated from the Docker host (the container shares the host’s 
+networking namespace), and the container does not get its own IP-address allocated.
+
+>Host
 
 
-Which among the below is a correct command to start a webapp container with the volume vol2, mounted to the destination directory /app?
+Q:What is the command to delete the network named connector?
 
-.
+>docker network rn connector 
 
-What is the command to create a volume with the name my-vol?
-docker volume create my-vol
+Q:Which command is used to remove the my-vol volume?
 
-What is the command to remove unused volumes?
-docker volume prune 
+>docker volume remove my-vol
 
-Volumes are the preferred mechanism for persisting data generated by and used by Docker containers.
-true
+Q:You can remove a vol1 which is in use by a container using the command docker volume rm --force vol1.
 
-What is the command to list volumes?
-docker volume ls
+>false
 
-The volumes are mounted as “readonly” by default inside the container if no options are specified.
-false
+Q:By default, all files inside an image are in a writable layer.
 
-Volumes are the preferred mechanism for persisting data generated by and used by Docker containers.
-true
+>false
 
-Which option is used to mount a volume ?
--mount
+Q:What is the command to get details of the volume my-vol such as the driver, mountpoint, volumename, …etc?
+
+>docker volume inspect my-vol
 
 
--------------------docker image managment-----------------
+Q:Which option is used to mount a volume ?
+
+>mount
+
+Q:By default, all files created inside a container are stored on a writable container layer.
+
+>true 
+Q:What is the command to create a volume with the name my-vol?
+
+>docker volume create my-vol
+
+Q:What is the command to remove unused volumes?
+
+>docker volume prune 
+
+Q:Volumes are the preferred mechanism for persisting data generated by and used by Docker containers.
+
+>true
+
+Q:What is the command to list volumes?
+
+>docker volume ls
+
+Q:The volumes are mounted as “readonly” by default inside the container if no options are specified.
+
+>false
+
+Q:Volumes are the preferred mechanism for persisting data generated by and used by Docker containers.
+
+>true
+
+Q:Which option is used to mount a volume ?
+
+>mount
+
+
+# docker image managment:-
 where the images stored and how do we get them ?
-iamges stored in a central image repository known as image registry .  >docker hub 
+
+images stored in a central image repository known as image registry (docker hub )
+
 you can  create public and private images on docker hub .
+
+
 you can create your own images and push it to docker hub  and even make the private .
 
-docker trusted registry service:-
-official images 
-verified images 
-users images 
+# docker trusted registry service:-
+>official images 
 
-when you pull image that doesn't mean to create a container from it .
+>verified images 
 
-why i need to create my own images ??
+>users images 
+
+*when you pull image that doesn't mean to create a container from it .
+
+# why i need to create my own images ??
 becuse mabye you cant find a service that you want or you and your tam decided the app you developing will be dockerized  fro shipping and deployment . 
 
-A build’s context is the set of files located in the specified PATH or URL, Which kind of resources can the URL parameter refer to ?
-git repo
+# A build’s context is the set of files located in the specified PATH or URL, Which kind of resources can the URL parameter refer to ?
+>git repo
 
-What is a recommended approach for installing packages and libraries while building an image?
-update and install commands in the same instraction.
+# What is a recommended approach for installing packages and libraries while building an image?
+>update and install commands in the same instraction.
 
-What is the file used to exclude temporary files such as log files or builds from the context during a build?
-.dockerignor
+# What is the file used to exclude temporary files such as log files or builds from the context during a build?
+>.dockerignor
 
-Whenever a build is initiated by running the Docker build command, the files under the build context are transferred to the Docker daemon, at a temporary directory under the docker’s filesystem. Which directory are these files stored in?
-var/lib/docker/tmp
-
-
-If the build fails at a particular stage, it repurposes the previous layers from the cache and does not really rebuild them.
-true
-
-If you do not specify a tag name, you can’t build the image.
-false
-
-Which option can be used to disable the cache while building a docker image?
---no-cache
-
-Build an image using a context build under path /tmp/docker and name it webapp.
-docker build /tmp/docker -t webapp
-
- forces the build to install a particular version of package regardless of what’s in the cache. This technique can also reduce failures due to unanticipated changes in required packages.
-version pinning 
+# Whenever a build is initiated by running the Docker build command, the files under the build context are transferred to the Docker daemon, at a temporary directory under the docker’s filesystem. Which directory are these files stored in?
+>var/lib/docker/tmp
 
 
-What is a best practice while installing multiple packages as part of the install instruction?
+# If the build fails at a particular stage, it repurposes the previous layers from the cache and does not really rebuild them.
+>true
+
+# If you do not specify a tag name, you can’t build the image.
+>false
+
+# Which option can be used to disable the cache while building a docker image?
+>--no-cache
+
+# Build an image using a context build under path /tmp/docker and name it webapp.
+>docker build /tmp/docker -t webapp
+
+# forces the build to install a particular version of package regardless of what’s in the cache. This technique can also reduce failures due to unanticipated changes in required packages.
+>version pinning 
+
+
 
 
 
