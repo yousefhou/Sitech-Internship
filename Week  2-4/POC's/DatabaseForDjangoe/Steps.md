@@ -24,6 +24,9 @@
 		'PORT' : '3306',
 	}
 
+# then Install MySQL Client Library usnig this command .
+>pip install mysqlclient
+
 # finally run this command to create tables in the MySQL database.
 >python3 manage.py makemigrations
 
