@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  django-app:
+    image: your-django-image
+    networks:
+      - mynetwork
+    expose:
+      - "8000" # Expose Django on port 8000 within the network
+
+  nginx:
+    image: nginx
+    networks:
+      - mynetwork
+    ports:
+      - "8080:80" # Expose Nginx on port 80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d 
+    depends_on:
+      - django-app
+
+networks:
+  mynetwork:
+
