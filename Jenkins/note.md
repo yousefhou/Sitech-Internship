@@ -37,6 +37,7 @@ free and a lot of plugins and enterprise are available too .
 
 #  how to restart jenkins (if need to for a new plugin):
 > sudo systemctl restart jenkins
- 
 
 
+#  Jenkinsfile is :
+Text file than contains definitions and those definitions think template think instractions when i say definitions , it tells pipline what it shoud be doing and what services and plugins it should be interacting with .
