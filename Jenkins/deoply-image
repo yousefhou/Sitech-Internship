@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Deploy Docker Image') {
+            steps {
+                script {
+                    def imageTag = "v1.0.1" 
+                    sh "docker run -d -p 80:80 jenkins-django-app:$DeployImage"
+                }
+            }
+        }
+    }
+}
+

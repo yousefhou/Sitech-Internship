@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    def imageTag = "v1.0." 
+                    sh "docker build -t jenkins-django-app:$BuildImage ."
+                }
+            }
+        }
+    }
+}
